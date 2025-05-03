@@ -49,6 +49,9 @@
       </item>
       <item row="0" column="1">
        <widget class="QSpinBox" name="targetEnhancedSpinBox">
+        <property name="toolTip">
+         <string>Enter the total number of enhanced items you want to end up with.</string>
+        </property>
         <property name="maximum">
          <number>999999</number>
         </property>
@@ -63,6 +66,9 @@
       </item>
       <item row="1" column="1">
        <widget class="QSpinBox" name="currentEnhancedSpinBox">
+        <property name="toolTip">
+         <string>Enter the number of enhanced items you already possess.</string>
+        </property>
         <property name="maximum">
          <number>999999</number>
         </property>
@@ -77,6 +83,9 @@
       </item>
       <item row="2" column="1">
        <widget class="QDoubleSpinBox" name="enhancedPriceSpinBox">
+        <property name="toolTip">
+         <string>Enter the market price for one enhanced item.</string>
+        </property>
         <property name="decimals">
          <number>2</number>
         </property>
@@ -94,6 +103,9 @@
       </item>
       <item row="3" column="1">
        <widget class="QDoubleSpinBox" name="normalPriceSpinBox">
+        <property name="toolTip">
+         <string>Enter the market price for one normal (base) item used in crafting.</string>
+        </property>
         <property name="decimals">
          <number>2</number>
         </property>
@@ -106,8 +118,21 @@
     </item>
     <item>
      <widget class="QPushButton" name="calculateButton">
+      <property name="toolTip">
+       <string>Calculate the costs based on the entered values.</string>
+      </property>
       <property name="text">
        <string>Calculate Costs</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="resetButton">
+      <property name="toolTip">
+       <string>Clear all input fields and results.</string>
+      </property>
+      <property name="text">
+       <string>Reset</string>
       </property>
      </widget>
     </item>
@@ -119,44 +144,73 @@
      </widget>
     </item>
     <item>
-     <widget class="QLabel" name="resultsTitleLabel">
+     <widget class="QGroupBox" name="resultsGroupBox">
+      <property name="title">
+       <string>🔍 Calculation Results</string>
+      </property>
       <property name="font">
        <font>
-        <pointsize>12</pointsize>
+        <pointsize>11</pointsize>
         <bold>true</bold>
        </font>
       </property>
-      <property name="text">
-       <string>🔍 Calculation Results:</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="resultNeededEnhancedLabel">
-      <property name="text">
-       <string>Enhanced items needed: -</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="resultNeededNormalLabel">
-      <property name="text">
-       <string>Normal items needed to craft: -</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="resultCostEnhancedLabel">
-      <property name="text">
-       <string>Cost if buying Enhanced directly: $ -</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="resultCostNormalLabel">
-      <property name="text">
-       <string>Cost if buying Normal and crafting: $ -</string>
-      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QLabel" name="resultNeededEnhancedLabel">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Enhanced items needed: -</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="resultNeededNormalLabel">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>Based on a ratio of 160 Normal items per Enhanced item.</string>
+         </property>
+         <property name="text">
+          <string>Normal items needed to craft: -</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="resultCostEnhancedLabel">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Cost if buying Enhanced directly: $ -</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="resultCostNormalLabel">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Cost if buying Normal and crafting: $ -</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </item>
     <item>
@@ -166,15 +220,19 @@
       </property>
      </widget>
     </item>
-     <item>
+    <item>
      <widget class="QLabel" name="recommendationLabel">
       <property name="font">
        <font>
+        <pointsize>11</pointsize>
         <weight>Bold</weight>
        </font>
       </property>
       <property name="text">
        <string>💡 Recommendation: -</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
       </property>
       <property name="wordWrap">
        <bool>true</bool>

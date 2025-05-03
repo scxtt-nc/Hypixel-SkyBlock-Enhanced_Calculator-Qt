@@ -59,3 +59,22 @@ void MainWindow::on_calculateButton_clicked()
     }
 }
 
+// Slot implementation for the Reset button
+void MainWindow::on_resetButton_clicked()
+{
+    // Reset input fields to 0
+    ui->targetEnhancedSpinBox->setValue(0);
+    ui->currentEnhancedSpinBox->setValue(0);
+    ui->enhancedPriceSpinBox->setValue(0.0);
+    ui->normalPriceSpinBox->setValue(0.0);
+
+    // Reset result labels to their initial state
+    ui->resultNeededEnhancedLabel->setText("Enhanced items needed: -");
+    ui->resultNeededNormalLabel->setText("Normal items needed to craft: -");
+    ui->resultCostEnhancedLabel->setText("Cost if buying Enhanced directly: $ -");
+    ui->resultCostNormalLabel->setText("Cost if buying Normal and crafting: $ -");
+
+    // Reset recommendation label
+    ui->recommendationLabel->setText("💡 Recommendation: -");
+}
+

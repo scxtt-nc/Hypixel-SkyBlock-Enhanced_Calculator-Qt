@@ -17,6 +17,7 @@ public:
 
 private slots:
     void on_calculateButton_clicked(); // Slot for button click
+    void on_resetButton_clicked();     // Slot for the new reset button
 
 private:
     Ui::MainWindow *ui;
