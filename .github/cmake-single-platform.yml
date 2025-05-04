@@ -1,0 +1,59 @@
+# This workflow builds and tests the Hypixel SkyBlock Enhanced Calculator Qt application
+name: Build Qt Application
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+  BUILD_TYPE: Release
+  QT_VERSION: 6.5.0
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Qt environment
+      uses: jurplel/install-qt-action@v3
+      with:
+        version: ${{ env.QT_VERSION }}
+        modules: 'qtwidgets'
+        
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential libgl1-mesa-dev
+
+    - name: Configure CMake
+      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+
+    - name: Build
+      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --parallel $(nproc)
+
+    - name: Run Tests (if any)
+      working-directory: ${{github.workspace}}/build
+      run: |
+        if [ -f "CTestTestfile.cmake" ]; then
+          ctest -C ${{env.BUILD_TYPE}}
+        else
+          echo "No tests defined, skipping test step"
+        fi
+        
+    - name: Package Application
+      working-directory: ${{github.workspace}}/build
+      run: |
+        mkdir -p artifact
+        cp EnhancedCalculator artifact/
+        
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: EnhancedCalculator
+        path: ${{github.workspace}}/build/artifact/
+
