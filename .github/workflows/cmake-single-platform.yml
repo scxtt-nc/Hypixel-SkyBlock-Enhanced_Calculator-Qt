@@ -23,7 +23,7 @@ jobs:
       uses: jurplel/install-qt-action@v4.2.1
       with:
         version: ${{ env.QT_VERSION }}
-        modules: 'qtwidgets'
+        modules: 'qtbase qtwidgets'
         
     - name: Install system dependencies
       run: |
