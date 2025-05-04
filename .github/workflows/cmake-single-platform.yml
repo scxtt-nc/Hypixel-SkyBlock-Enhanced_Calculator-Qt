@@ -17,10 +17,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v4.2.2
 
     - name: Set up Qt environment
-      uses: jurplel/install-qt-action@v3
+      uses: jurplel/install-qt-action@v4.2.1
       with:
         version: ${{ env.QT_VERSION }}
         modules: 'qtwidgets'
@@ -52,7 +52,7 @@ jobs:
         cp EnhancedCalculator artifact/
         
     - name: Upload Artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4.6.2
       with:
         name: EnhancedCalculator
         path: ${{github.workspace}}/build/artifact/
